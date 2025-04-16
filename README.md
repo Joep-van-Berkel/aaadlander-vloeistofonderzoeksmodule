@@ -1,6 +1,4 @@
-🌌 AAADLander – Vloeistofonderzoeksmodule
-
----
+### 🌌 AAADLander – Vloeistofonderzoeksmodule
 
 Welkom bij de officiële repository van de **Vloeistofonderzoeksmodule** van de AAAdlander!  
 Deze module is onderdeel van het Interdisciplinair Project Informatica & Engineering van Avans 2025 en is ontworpen om vloeistofmonsters te nemen en te analyseren op locatie.
