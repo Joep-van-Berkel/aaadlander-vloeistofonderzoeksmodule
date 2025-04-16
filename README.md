@@ -17,7 +17,7 @@ Functionaliteiten
 -  5-voudige temperatuurmeting van het vloeistofmonster
 -  Draadloze communicatie via NRF24 met een satelliet
 -  Data-overdracht naar een webapplicatie via WebSockets
--  Data visualisatie in webpagina
+-  Dashboard toont temperatuurresultaten
 -  LED-indicatie bij communicatieproblemen
 -  Zelfstandige energievoorziening
 -  Lokale testmogelijkheden via USB
