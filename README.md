@@ -3,15 +3,13 @@
 Welkom bij de officiële repository van de **Vloeistofonderzoeksmodule** van de AAAdlander!  
 Deze module is onderdeel van het Interdisciplinair Project Informatica & Engineering van Avans 2025 en is ontworpen om vloeistofmonsters te nemen en te analyseren op locatie.
 
-
-
+<br><br>
 
 ## Over deze module
 
 De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstelling. Onze specifieke module heeft als taak om een vloeistofmonster te nemen en daarvan de temperatuur nauwkeurig te meten.
 
-
-
+<br><br>
 
 ## Functionaliteiten
 
