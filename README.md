@@ -27,7 +27,10 @@ De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstell
 
 
 
-![AASA Logo](Web/resources/AASA_logo.png)
+## AASA Logo
+
+<img src="https://raw.githubusercontent.com/Joep-van-Berkel/aaadlander-vloeistofonderzoeksmodule/main/Web/resources/AASA_logo.withoutBackground.png" alt="AASA Logo" style="margin-top: 20px; margin-bottom: 20px;"/>
+
 
 
 
