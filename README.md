@@ -23,4 +23,5 @@ De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstell
 - Lokale backup testmogelijkheden via USB  
 
 <br>
-![AASA Logo](Web/resources/AASA_logo.withoutBackground.png)
+![AASA Logo](https://raw.githubusercontent.com/Joep-van-Berkel/aaadlander-vloeistofonderzoeksmodule/main/Web/resources/AASA_logo.withoutBackground.png)
+
