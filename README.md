@@ -24,7 +24,6 @@ De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstell
 
 <br>
 <br>
-<br>
 
 ![AASA Logo](Web/resources/AASA_logo.png)
 
