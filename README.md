@@ -16,7 +16,7 @@ De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstell
 - Nemen van een vloeistofmonster (automatisch op commando)  
 - 5-voudige temperatuurmeting van het vloeistofmonster  
 - Draadloze communicatie via NRF24 met een satelliet  
-- Data-overdracht naar een webapplicatie via WebSockets  
+- Data-overdracht naar een webapplicatie via NodeRed server en WebSockets  
 - Dashboard toont temperatuurresultaten  
 - LED-indicatie bij communicatieproblemen  
 - Zelfstandige energievoorziening  
