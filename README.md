@@ -20,4 +20,4 @@ De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstell
 - Dashboard toont temperatuurresultaten  
 - LED-indicatie bij communicatieproblemen  
 - Zelfstandige energievoorziening  
-- Lokale testmogelijkheden via USB  
+- Lokale backup testmogelijkheden via USB  
