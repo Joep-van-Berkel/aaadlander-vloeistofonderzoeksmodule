@@ -7,7 +7,7 @@ Deze module is onderdeel van het Interdisciplinair Project Informatica & Enginee
 
 ## Over deze module
 
-De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstelling. Onze specifieke module heeft als taak om een vloeistofmonster te nemen en daarvan de temperatuur nauwkeurig te meten.
+De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstelling. Onze specifieke module heeft als taak om vanuit een webinterface een vloeistofmonster te nemen en daarvan de temperatuur nauwkeurig te meten.
 
 <br>
 
