@@ -1,0 +1,76 @@
+body {
+    background-color: #060c1c;
+    margin: 0;
+    height: 100vh; /* Zorg dat de body de volledige hoogte van het scherm benut */
+    box-sizing: border-box; /* Inclusief padding in hoogteberekening */
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    height: calc(100% - 40px); /* Houd rekening met de padding (20px boven en onder) */
+    box-sizing: border-box; /* Inclusief padding in hoogteberekening */
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Zorg dat de containers de volledige hoogte benutten */
+    width: 90%;
+    gap: 100px;
+}
+
+.left-container,
+.right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%; /* Zorg dat de containers de volledige hoogte benutten */
+}
+
+.buttons {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.buttons button {
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chart {
+    width: 100%;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    align-self: stretch;
+}
+
+.right-container {
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
+.logo {
+    height: calc(40px + 20px);
+    width: auto;
+    margin-bottom: 12.5px;
+    align-self: flex-end;
+}
+
+.console {
+    width: 100%;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    overflow-y: auto;
+    font-family: monospace;
+    align-self: stretch;
+}
