@@ -1,76 +1,96 @@
 body {
-    background-color: #060c1c;
     margin: 0;
-    height: 100vh; /* Zorg dat de body de volledige hoogte van het scherm benut */
-    box-sizing: border-box; /* Inclusief padding in hoogteberekening */
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+* {
+    box-sizing: inherit; /* Ensure all elements use border-box */
+}
+
+div {
+    border: 1px solid;
 }
 
 .main-container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    height: calc(100% - 40px); /* Houd rekening met de padding (20px boven en onder) */
-    box-sizing: border-box; /* Inclusief padding in hoogteberekening */
-}
-
-.content {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch; /* Zorg dat de containers de volledige hoogte benutten */
-    width: 90%;
-    gap: 100px;
-}
-
-.left-container,
-.right-container {
-    flex: 1;
+    height: calc(100vh - 80px); /* Account for the 40px margin */
+    margin: 40px;
+    border-color: black;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100%; /* Zorg dat de containers de volledige hoogte benutten */
+    overflow: hidden; /* Prevent child overflow */
 }
 
-.buttons {
-    margin: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.upper-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2 delen voor knoppen, 1 deel voor logo */
+    align-items: center;
+    height: 15%;
+    margin: 10px 0;
+    border-color: red;
     gap: 10px;
 }
 
-.buttons button {
+
+
+.lower-container {
+    height: calc(85% - 20px); /* Subtract margins to fit within the main container */
+    border-color: green;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    flex-grow: 1; /* Ensure it takes up remaining space */
+}
+
+.upper-container,
+.lower-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2 delen voor grafiek/knoppen, 1 deel voor logo/console */
+    gap: 10px;
+    margin: 10px 0;
+}
+
+
+.button-container {
+    grid-column: 1;
+    display: flex;
+    justify-content: space-between; /* of: space-evenly / flex-start met gap */
+    gap: 10px; /* géén margin meer op knoppen */
+    width: 100%;
+}
+
+
+.button-container button {
     flex: 1;
-    padding: 10px 20px;
+    padding: 20px 20px;
     font-size: 16px;
     cursor: pointer;
+    /* geen margin meer hier! */
 }
 
-.chart {
-    width: 100%;
-    flex-grow: 1;
-    border: 1px solid #ccc;
-    align-self: stretch;
+
+.graph {
+    grid-column: 1;
 }
 
-.right-container {
-    align-items: flex-end;
-    margin-top: 10px;
+
+.logo-container {
+    display: flex;
+    justify-content: flex-end; /* Push the image to the right */
+    align-items: center;
 }
 
-.logo {
-    height: calc(40px + 20px);
-    width: auto;
-    margin-bottom: 12.5px;
-    align-self: flex-end;
+.logo-container img {
+    height: 70px;           /* Or match button height */
+    width: 70px;
+    object-fit: contain;
 }
 
-.console {
-    width: 100%;
-    flex-grow: 1;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    padding: 10px;
-    overflow-y: auto;
-    font-family: monospace;
-    align-self: stretch;
+
+
+.console-container {
+    grid-column: 2;
 }
+
