@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+div {
+    border: 1px solid;
+}
+
+.main-container {
+    height: calc(100vh - 80px);
+    margin: 40px;
+    border-color: black;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.upper-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    height: 15%;
+    margin: 10px 0;
+    border-color: red;
+    gap: 10px;
+}
+
+.lower-container {
+    height: calc(85% - 20px);
+    border-color: green;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    flex-grow: 1;
+}
+
+.upper-container,
+.lower-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.button-container {
+    grid-column: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.button-container button {
+    flex: 1;
+    padding: 20px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.graph {
+    grid-column: 1;
+}
+
+.graph canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+}
+
+.console-container {
+    grid-column: 2;
+}
+
