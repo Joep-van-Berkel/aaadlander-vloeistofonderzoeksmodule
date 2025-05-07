@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'Temperature (°C)', // Label for the dataset
                 data: [22, 24, 23, 25, 26], // Y-axis values (temperature)
-                borderColor: 'rgba(75, 192, 192, 1)', // Line color
+                borderColor: 'rgba(75, 100, 192, 1)', // Line color
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill under the line
-                borderWidth: 2, // Line thickness
+                borderWidth: 3, // Line thickness
                 tension: 0.4 // Smooth curve
             }]
         },

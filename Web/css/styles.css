@@ -5,7 +5,7 @@ body {
     box-sizing: border-box;
     overflow: hidden;
     background: url("../resources/particles.png") center/cover no-repeat;
-    /*background-color: #060c1c;*/
+    background-color: #060c1c;
 }
 
 * {
@@ -65,16 +65,22 @@ div {
     padding: 20px 20px;
     font-size: 16px;
     cursor: pointer;
+    /*background-color: grey;*/
+    border-radius: 30px;
+    border-color: #fa0053;
+    border-width: 2px;
 }
 
 .graph {
     grid-column: 1;
+    background-color: white;
+    border-color: black;
 }
 
 .graph canvas {
     width: 100%;
     height: 100%;
-    background-color: white;
+
 }
 
 .logo-container {
@@ -91,5 +97,7 @@ div {
 
 .console-container {
     grid-column: 2;
+    background-color: black;
+    border-color: white;
 }
 
