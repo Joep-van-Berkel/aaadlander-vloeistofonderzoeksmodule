@@ -13,13 +13,13 @@ body {
 }
 
 div {
-    border: 1px solid;
+    /*border: 1px solid;*/
 }
 
 .main-container {
     height: calc(100vh - 80px);
     margin: 40px;
-    border-color: black;
+    /*border-color: black;*/
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -31,13 +31,13 @@ div {
     align-items: center;
     height: 15%;
     margin: 10px 0;
-    border-color: red;
+    /*border-color: red;*/
     gap: 10px;
 }
 
 .lower-container {
     height: calc(85% - 20px);
-    border-color: green;
+    /*border-color: green;*/
     margin: 10px 0;
     display: grid;
     grid-template-columns: auto auto auto;
@@ -95,8 +95,8 @@ div {
 }
 
 .logo-container img {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
     object-fit: contain;
 }
 
