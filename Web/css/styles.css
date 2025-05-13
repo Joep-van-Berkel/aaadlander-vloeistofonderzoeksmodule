@@ -77,9 +77,10 @@ div {
     grid-column: 1;
     background-color: white;
     border-color: black;
-    /*height: 100%; !* Fill the parent container *!*/
+    /*height: 100%; */
     display: flex;
-    /*align-items: stretch; !* Ensure content stretches *!*/
+    /*align-items: stretch;*/
+
 }
 
 .graph canvas {
@@ -120,5 +121,7 @@ div {
 
 .console-field {
     padding: 10px;
+    border-color: white;
+
 }
 
