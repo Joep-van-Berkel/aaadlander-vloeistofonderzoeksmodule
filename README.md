@@ -14,10 +14,11 @@ De vloeistofonderzoeksmodule maakt deel uit van een modulaire maanlander-opstell
 ## Functionaliteiten
 
 - Nemen van een vloeistofmonster (automatisch op commando)  
-- 5-voudige temperatuurmeting van het vloeistofmonster  
+- 5-voudige temperatuurmeting van het vloeistofmonster met DS18b20 temperatuursensor 
 - Draadloze communicatie via NRF24 met een satelliet  
 - Data-overdracht naar een webapplicatie via NodeRed server en WebSockets  
-- Dashboard toont temperatuurresultaten  
+- Dashboard toont temperatuurresultaten
+- Opslaan van temperatuurresultaten
 - LED-indicatie bij communicatieproblemen  
 - Zelfstandige energievoorziening  
 - Lokale backup testmogelijkheden via USB  
