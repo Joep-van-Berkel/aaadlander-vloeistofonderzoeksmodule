@@ -102,6 +102,7 @@ void loop() {
     txData[cursor++] = timeStamp >> 8;
     txData[cursor++] = timeStamp;
 
+    // Temperatuur aan payload toevoegen
     txData[cursor++] = 2;                                           // Kanaal nummer 2
     txData[cursor++] = LPP_TEMPERATURE;                             // Datatype LPP_TEMPERATURE (103)
     txData[cursor++] = tempLpp >> 8;                                // high byte
