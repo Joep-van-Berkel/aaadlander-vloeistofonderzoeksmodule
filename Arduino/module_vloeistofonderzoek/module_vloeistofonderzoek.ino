@@ -39,7 +39,7 @@ uint8_t bytes;
 // Timing configuration
 unsigned long previousMillis = 0;                                     // will store last time LED was update
 unsigned long currentMillis;
-unsigned long sampleTime = 5000;                                      // milliseconds of on-tim
+unsigned long sampleTime = 1000;                                      // milliseconds of on-tim
 
 // int to hex converter
 void print2Hex(unsigned v) {

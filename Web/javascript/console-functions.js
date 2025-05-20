@@ -1,3 +1,4 @@
+
 function printToConsole(messages) {
     const consoleField = document.querySelector('.console-field');
     if (!consoleField) return;
