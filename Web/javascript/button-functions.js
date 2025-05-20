@@ -1,11 +1,13 @@
 function clickUnfoldModule() {
+    clearConsole()
     printToConsole('Unfolding module...');
 }
 
 function clickStartMeasurement() {
-    printToConsole('starting measurements...');
+    clearConsole()
+    printToConsole('Retrieving temperature measurements.');
 
-    const socket = new WebSocket('ws://145.49.127.248:1880/ws/groep8'); // Replace with your WebSocket URL
+    const socket = new WebSocket('ws://145.49.127.248:1880/ws/groep8');
 
     socket.addEventListener('open', () => {
         console.log('WebSocket connection established');
@@ -14,10 +16,10 @@ function clickStartMeasurement() {
     socket.addEventListener('message', (event) => {
         try {
             console.log('Received data:', event.data);
-            const data = JSON.parse(event.data); // Parse the incoming JSON data
+            const data = JSON.parse(event.data);
 
             if (data.temperature_2) {
-                addMeasurementToChart(data.temperature_2); // Pass only temperature to the chart
+                addMeasurementToChart(data.temperature_2);
             } else {
                 console.warn('Invalid data format:', data);
             }

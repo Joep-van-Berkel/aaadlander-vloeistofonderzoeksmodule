@@ -14,8 +14,8 @@ function initializeChart() {
             datasets: [{
                 label: 'Temperature (°C)',
                 data: [], // Start with empty data
-                borderColor: 'rgba(75, 100, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(255, 19, 240, 1)',
+                backgroundColor: 'rgba(255, 19, 240, 0.2)',
                 borderWidth: 3,
                 tension: 0.4
             }]
@@ -53,12 +53,16 @@ function clearChartContents() {
 let measurementCount = 0;
 
 function addMeasurementToChart(temperature) {
-    if (measurementCount > 30) {
-        console.warn('Maximum of 30 measurements reached.');
-        return; // Stop adding new measurements
+    if (measurementCount > 20) {
+        console.warn('Maximum of 20 measurements reached.');
+        return;
     }
 
-    myChart.data.labels.push(measurementCount++); // Add the new label (counter value)
-    myChart.data.datasets[0].data.push(temperature); // Add the new data point
-    myChart.update(); // Update the chart
+    myChart.data.labels.push(measurementCount);
+    myChart.data.datasets[0].data.push(temperature);
+    myChart.update();
+
+    measurementCount++;
+    const loadPercentage = Math.floor(((measurementCount - 1) / 20) * 100);
+    printLoadingBar(loadPercentage);
 }
