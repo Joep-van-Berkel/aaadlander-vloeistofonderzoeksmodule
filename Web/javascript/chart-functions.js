@@ -10,10 +10,10 @@ function initializeChart() {
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [], // Empty X-axis labels
+            labels: [], // Start with empty labels
             datasets: [{
                 label: 'Temperature (°C)',
-                data: [], // Empty Y-axis data
+                data: [], // Start with empty data
                 borderColor: 'rgba(75, 100, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderWidth: 3,
@@ -34,6 +34,8 @@ function initializeChart() {
                         text: 'Temperature (°C)'
                     },
                     beginAtZero: false,
+                    suggestedMin: 0,
+                    suggestedMax: 30
                 }
             }
         }
@@ -50,8 +52,13 @@ function clearChartContents() {
 
 let measurementCount = 0;
 
-function addMeasurementToChart(_, temperature) {
-    myChart.data.labels.push(measurementCount++); // Increment the counter for each measurement
-    myChart.data.datasets[0].data.push(temperature); // Add temperature to Y-axis
+function addMeasurementToChart(temperature) {
+    if (measurementCount > 30) {
+        console.warn('Maximum of 30 measurements reached.');
+        return; // Stop adding new measurements
+    }
+
+    myChart.data.labels.push(measurementCount++); // Add the new label (counter value)
+    myChart.data.datasets[0].data.push(temperature); // Add the new data point
     myChart.update(); // Update the chart
 }

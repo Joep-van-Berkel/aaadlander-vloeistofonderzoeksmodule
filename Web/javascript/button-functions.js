@@ -16,8 +16,8 @@ function clickStartMeasurement() {
             console.log('Received data:', event.data);
             const data = JSON.parse(event.data); // Parse the incoming JSON data
 
-            if (data.unixtime_1 && data.temperature_2) {
-                addMeasurementToChart(data.unixtime_1, data.temperature_2); // Call the function from chart-functions.js
+            if (data.temperature_2) {
+                addMeasurementToChart(data.temperature_2); // Pass only temperature to the chart
             } else {
                 console.warn('Invalid data format:', data);
             }
