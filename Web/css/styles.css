@@ -4,8 +4,31 @@ body {
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden;
-    background: url("../resources/particles.png") center/cover no-repeat;
-    background-color: #060c1c;
+    background: url("../resources/stars.png") center/cover no-repeat;
+}
+
+button {
+    cursor: pointer;
+    font-family: System-ui;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+button:hover {
+    background-color: #351015;
+    color: white;
+    box-shadow: 0 0 8px #ff002e, 0 0 15px #fd002e;
+    transform: scale(1.02);
+}
+
+button:hover::before {
+    opacity: 0.8;
+    transform: scale(0.9);
 }
 
 * {
@@ -15,14 +38,14 @@ body {
 div {
     /*border: 1px solid;*/
 }
+
 .aligning{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .main-container {
-    /*height: calc(100vh - 80px);*/
-    /*margin: 100px;*/
     /*border-color: black;*/
     display: flex;
     flex-direction: column;
@@ -32,18 +55,17 @@ div {
 }
 
 .upper-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
     align-items: center;
     height: 10%;
     margin: 10px 0;
     /*border-color: red;*/
-    gap: 10px;
+
 }
 
 .lower-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 0fr;
     flex-grow: 1;
     height: 100%;
 }
@@ -51,17 +73,16 @@ div {
 .left-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Zorgt ervoor dat de console naar de onderkant wordt geduwd */
-    gap: 10px;
+    justify-content: space-between;
+    gap: 20px;
     height: 100%;
 }
 
-.upper-container,
 .lower-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 30px;
     margin: 10px 0;
+    gap: 20px;
 }
 
 .button-container {
@@ -69,28 +90,31 @@ div {
     display: flex;
     gap: 2%;
     width: 100%;
+    background: linear-gradient(to right, rgba(57, 57, 57, 0.75) 75%, rgba(57, 57, 57, 0) 98%);
+    padding: 5px 15px;
+    border-radius: 20px;
+    justify-content: space-between;
+}
+
+.button-container div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .button-container button {
-    /*flex: 1;*/
     padding: 10px 30px;
-    font-family:System-ui;
     font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    /*background-color: grey;*/
-    border-radius: 45px;
-    border-color: #ff00aa;
-    border-width: 3px;
-}
+    width: 55px;
+    width: 250px;
+    }
 
 .graph {
-    background-color: white;
-    /*flex: 1;*/
+    background-color: rgba(57, 57, 57, 0.75);
     display: flex;
-    /*padding-bottom: 10px;*/
     height: 60vh;
     border-radius: 20px;
+    backdrop-filter: blur(3px);
 }
 
 .graph canvas {
@@ -105,8 +129,8 @@ div {
 }
 
 .logo-container img {
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
     object-fit: contain;
 }
 
@@ -121,8 +145,8 @@ div {
 }
 
 .console-header {
-    background-color: white;
-    color: black;
+    background-color: rgb(44, 47, 51);
+    color: white;
     text-align: left;
     font-family: system-ui;
     font-weight: bold;
@@ -132,7 +156,6 @@ div {
 
 .console-field {
     padding: 10px;
-    /*flex: 1;*/
     overflow-y: auto;
     font-family: monospace;
     color: white;
@@ -141,14 +164,12 @@ div {
 .right-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Zorgt ervoor dat de knoppen naar de onderkant worden geduwd */
+    justify-content: space-between;
     gap: 10px;
     height: 100%;
 }
 
 .database {
-    background-color: white;
-    /*flex: 1;*/
     height: 60vh;
     display: flex;
     justify-content: center;
@@ -156,26 +177,27 @@ div {
     font-family: system-ui;
     font-weight: bold;
     font-size: 24px;
+    color: white;
+    background-color: rgba(57, 57, 57, 0.75);
     border-radius: 20px;
+    backdrop-filter: blur(2px);
 }
 
 .database-buttons {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     height: 20vh;
     justify-content: center;
     align-items: center;
+    background-color: rgba(57, 57, 57, 0.75);
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
 }
 
 .database-buttons button {
     padding: 15px 10px;
-    font-family: System-ui;
     font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 45px;
-    border: 3px solid #ff00aa;
-    width: 400px;
+    width: 560px;
 }
 

@@ -3,39 +3,63 @@ let myChart;
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
     clearChartContents();
+
+    for (let i = 0; i < 21; i++) {
+        const testTemperature = Math.random() * 30; // Generate random temperature between 0 and 30
+        addMeasurementToChart(testTemperature);
+    }
 });
 
 function initializeChart() {
     const ctx = document.getElementById('chart').getContext('2d');
     myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: [], // Start with empty labels
+            labels: [],
             datasets: [{
                 label: 'Temperature (°C)',
-                data: [], // Start with empty data
-                borderColor: 'rgba(255, 19, 240, 1)',
-                backgroundColor: 'rgba(255, 19, 240, 0.2)',
-                borderWidth: 3,
-                tension: 0.4
+                data: [],
+                backgroundColor: 'rgb(196,0,42)',
+                borderWidth: 3
             }]
         },
         options: {
+            layout: {
+                padding: {
+                    top: 25,
+                    bottom: 5,
+                    left: 10,
+                    right: 0
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Time (seconds)'
+                        text: 'Time (seconds)',
+                        color: 'white'
+                    },
+                    ticks: {
+                        color: 'white' // Set X-axis values font color to white
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Temperature (°C)'
+                        text: 'Temperature (°C)',
+                        color: 'white'
+                    },
+                    ticks: {
+                        color: 'white' // Set Y-axis values font color to white
                     },
                     beginAtZero: false,
-                    suggestedMin: 0,
-                    suggestedMax: 30
+                    Min: 0,
+                    Max: 20
                 }
             }
         }
