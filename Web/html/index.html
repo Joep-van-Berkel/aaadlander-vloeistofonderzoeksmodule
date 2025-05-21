@@ -15,7 +15,7 @@
         <script src="../javascript/button-functions.js"></script>
 </head>
 
-<body>
+<body class="aligning">
         <div class="main-container">
                 <div class="upper-container">
                         <div class="button-container">
@@ -28,14 +28,24 @@
                         </div>
                 </div>
                 <div class="lower-container">
-                        <div class="graph">
-                                <canvas id="chart"></canvas>
+                        <div class="left-section">
+                                <div class="graph">
+                                        <canvas id="chart"></canvas>
+                                </div>
+                                <div class="console-container">
+                                        <div class="console-header">Console</div>
+                                        <div class="console-field"></div>
+                                </div>
                         </div>
-                        <div class="console-container">
-                                <div class="console-header">Console</div>
-                                <div class="console-field"></div>
+                        <div class="right-section">
+                                <div class="database">Database</div>
+                                <div class="database-buttons">
+                                        <button>Save measurements</button>
+                                        <button>Load measurements</button>
+                                </div>
                         </div>
                 </div>
+
         </div>
 </body>
 </html>
