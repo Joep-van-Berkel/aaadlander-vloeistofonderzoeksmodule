@@ -1,13 +1,9 @@
 let myChart;
+let measurementCount = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
     clearChartContents();
-
-    for (let i = 0; i < 21; i++) {
-        const testTemperature = Math.random() * 30; // Generate random temperature between 0 and 30
-        addMeasurementToChart(testTemperature);
-    }
 });
 
 function initializeChart() {
@@ -66,19 +62,19 @@ function initializeChart() {
     });
 }
 
+
 function clearChartContents() {
     if (myChart) {
-        myChart.data.labels = []; // Clear X-axis labels
-        myChart.data.datasets[0].data = []; // Clear Y-axis data
-        myChart.update(); // Update the chart
+        myChart.data.labels = [];
+        myChart.data.datasets[0].data = [];
+        myChart.update();
     }
 }
 
-let measurementCount = 0;
-
 function addMeasurementToChart(temperature) {
     if (measurementCount > 20) {
-        console.warn('Maximum of 20 measurements reached.');
+
+        enableAllButtons()
         return;
     }
 

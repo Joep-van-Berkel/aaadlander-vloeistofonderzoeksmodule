@@ -6,8 +6,10 @@
 #include <nRF24L01.h>       // to handle this particular modem drive
 #include "RF24.h"           // the library which helps us to control the radio mode
 #include "Temperature.h"    // temperatuur header file
+#include "Pump.h"           // Pump C header file
+#include "Servo.h"          // Servo C header file
 
-#define LEDPIN 5            // the library which helps us to control the radio mode
+#define LEDPIN 5            
 #define NOACK_PIN 6         // Digital pin to flag NOACK received by nRF2
 #define CE_PIN 7            // RF-NANO usb-c, Arduino-uno -> 7, RF-NANO micro-usb -> 9
 #define CSN_PIN 8           // RF-NANO usb-c, Arduino-uno -> 8, RF-NANO micro-usb -> 1
@@ -18,7 +20,7 @@ DS18B20Sensor tempSensor;
 // Initialise actuators
 Led led;
 int ledState = LOW;         // ledState used to set the LED
-Led nRF24Led;
+Led nRF24Led;               
 
 #define RF24_PAYLOAD_SIZE 32
 #define AAAD_ARO 2
@@ -39,7 +41,7 @@ uint8_t bytes;
 // Timing configuration
 unsigned long previousMillis = 0;                                     // will store last time LED was update
 unsigned long currentMillis;
-unsigned long sampleTime = 1000;                                      // milliseconds of on-tim
+unsigned long sampleTime = 5000;                                      // milliseconds of on-tim
 
 // int to hex converter
 void print2Hex(unsigned v) {
@@ -48,6 +50,7 @@ void print2Hex(unsigned v) {
 }
 
 void setup() {
+
   Serial.begin(9600);
   Serial.println("\n\nnRF24 Application ARO" + String(AAAD_ARO) + ", Module" + String(AAAD_MODULE) + " Started!\n");
 
@@ -59,6 +62,12 @@ void setup() {
 
   // Activate temperature sensor
   tempSensor.begin();
+
+  // Activate pump
+  pumpSetup();
+
+  // Activate servo
+  servoSetup();
 
   // Activate Radio
   printf_begin();
@@ -80,6 +89,7 @@ void setup() {
 }
 
 void loop() {
+
   currentMillis = millis();                                         // check of het tijd is voor een update
 
     if (currentMillis - previousMillis >= sampleTime) {
@@ -131,7 +141,7 @@ void loop() {
       nRF24Led.setState(HIGH);                                       // Set led to signal no communicatio
     }
 
-    radio.startListening();                                          // Now, continue listenin
+    radio.startListening();                                          // Now, continue listening
     previousMillis = currentMillis;
   }
 
@@ -141,7 +151,6 @@ void loop() {
     while (radio.available()) {                                      // While there is data read
       bytes = radio.getPayloadSize();
       radio.read(rxData, bytes);                                     // read value from the configured pip
-      radio.read(&rxData, sizeof(rxData));                           // Get the payload
     }
 
     // Print received data in Hex format
@@ -152,8 +161,8 @@ void loop() {
     }
     Serial.println();
 
-    // Switch led on Received command
-    if (rxData[0] == 0 && rxData[1] == LPP_DIGITAL_OUTPUT) {          // channelnumber == 0 and Datatype is LPP_DIGITAL_OUTPUT
+    // Switch led on Received command for channel 1 
+    if (rxData[0] == 1 && rxData[1] == LPP_DIGITAL_OUTPUT) {          // channelnumber == 0 and Datatype is LPP_DIGITAL_OUTPUT
       if (rxData[2] == 0xFF) {
         Serial.println("Led=ON");
         led.setState(HIGH);
@@ -163,5 +172,31 @@ void loop() {
         led.setState(LOW);
       }
     }
+
+    // activate pump on received command
+    if (rxData[0] == 2 && rxData[1] == LPP_DIGITAL_OUTPUT) {
+      if (rxData[2] == 0xFF ){
+        pumpIntoModule();
+      }
+      if (rxData[0] == 2 && rxData[1] == LPP_DIGITAL_OUTPUT){
+        if (rxData[2] == 0){
+          unloadLiquidFromModule();
+        }
+      }
+    }
+
+    //activate servo on received command
+    if (rxData[0] == 3 && rxData[1] == LPP_DIGITAL_OUTPUT) {
+      if (rxData[2] == 0xFF ){
+        unfoldModule();
+      }
+      if (rxData[0] == 3 && rxData[1] == LPP_DIGITAL_OUTPUT){
+        if (rxData[2] == 0){
+          foldModule();
+        }
+      }
+    }
+
+
   }
 }   // Loop
