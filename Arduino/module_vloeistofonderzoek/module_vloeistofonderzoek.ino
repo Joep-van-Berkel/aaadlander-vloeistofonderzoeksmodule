@@ -7,7 +7,7 @@
 #include "RF24.h"           // the library which helps us to control the radio mode
 #include "Temperature.h"    // temperatuur header file
 #include "Pump.h"           // Pump C header file
-#include "Servo.h"          // Servo C header file
+#include "ServoControl.h"   // ServoControl C header file
 
 #define LEDPIN 5            
 #define NOACK_PIN 6         // Digital pin to flag NOACK received by nRF2
@@ -162,11 +162,11 @@ void loop() {
     Serial.println();
 
     // Switch led on Received command for channel 1 
-    if (rxData[0] == 1 && rxData[1] == LPP_DIGITAL_OUTPUT) {          // channelnumber == 0 and Datatype is LPP_DIGITAL_OUTPUT
-      if (rxData[2] == 0xFF) {
-        Serial.println("Led=ON");
-        led.setState(HIGH);
-      }
+    if (rxData[0] == 1 && rxData[1] == LPP_DIGITAL_OUTPUT) {          // [0] = channelnumber
+      if (rxData[2] == 0xFF) {                                        // [1] = datatype
+        Serial.println("Led=ON");                                     // [2] = value 
+        led.setState(HIGH);                                           // 255 decimal   =   0xFF Hexadecimal
+      }                                                               // 0 decimal     =   0 hexadecimal
       if (rxData[2] == 0x7F) {
         Serial.println("Led=OFF");
         led.setState(LOW);
