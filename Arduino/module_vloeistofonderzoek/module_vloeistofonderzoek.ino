@@ -9,8 +9,8 @@
 #include "Pump.h"           // Pump C header file
 #include "ServoControl.h"   // ServoControl C header file
 
-#define LEDPIN 5            
-#define NOACK_PIN 6         // Digital pin to flag NOACK received by nRF2
+#define LEDPIN 4            
+#define NOACK_PIN 2         // Digital pin to flag NOACK received by nRF2
 #define CE_PIN 7            // RF-NANO usb-c, Arduino-uno -> 7, RF-NANO micro-usb -> 9
 #define CSN_PIN 8           // RF-NANO usb-c, Arduino-uno -> 8, RF-NANO micro-usb -> 1
 
@@ -41,7 +41,7 @@ uint8_t bytes;
 // Timing configuration
 unsigned long previousMillis = 0;                                     // will store last time LED was update
 unsigned long currentMillis;
-unsigned long sampleTime = 5000;                                      // milliseconds of on-tim
+unsigned long sampleTime = 1000;                                      // milliseconds of on-tim
 
 // int to hex converter
 void print2Hex(unsigned v) {
@@ -178,7 +178,7 @@ void loop() {
       if (rxData[2] == 0xFF ){
         pumpIntoModule();
       }
-      if (rxData[0] == 2 && rxData[1] == LPP_DIGITAL_OUTPUT){
+      if (rxData[0] == 2 && rxData[1] == LPP_DIGITAL_OUTPUT) {
         if (rxData[2] == 0){
           unloadLiquidFromModule();
         }
