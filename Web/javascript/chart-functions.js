@@ -4,6 +4,12 @@ let measurementCount = 0;
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
     clearChartContents();
+
+    // Testdata grafiek:
+
+    for (let i = 0; i < 21; i++) {
+        addMeasurementToChart((Math.random() * 20).toFixed(2));
+    }
 });
 
 function initializeChart() {
