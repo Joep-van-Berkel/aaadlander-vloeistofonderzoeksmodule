@@ -18,7 +18,7 @@ void pumpStop(){
 void pumpIntoModule() {
   analogWrite(motorPin2, 0);
   analogWrite(motorPin1, speed);
-  delay(3000);
+  delay(5000);
 
   pumpStop();
 }
@@ -26,7 +26,7 @@ void pumpIntoModule() {
 void unloadLiquidFromModule() {
   analogWrite(motorPin1, 0);
   analogWrite(motorPin2, speed);
-  delay(3000);
+  delay(5000);
 
   pumpStop();
 }

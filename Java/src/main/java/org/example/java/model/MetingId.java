@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class MetingId implements Serializable {
-    private Long metingId;
+    private Long metingID;
     private Double temperatuur;
 
     // Default constructor
     public MetingId() {}
 
     // Getters, Setters, equals, and hashCode
-    public Long getMetingId() {
-        return metingId;
+    public Long getMetingID() {
+        return metingID;
     }
 
-    public void setMetingId(Long metingId) {
-        this.metingId = metingId;
+    public void setMetingID(Long metingID) {
+        this.metingID = metingID;
     }
 
     public Double getTemperatuur() {
@@ -31,13 +31,13 @@ public class MetingId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MetingId metingId1 = (MetingId) o;
-        return Objects.equals(metingId, metingId1.metingId) &&
-                Objects.equals(temperatuur, metingId1.temperatuur);
+        MetingId metingId = (MetingId) o;
+        return Objects.equals(metingID, metingId.metingID) &&
+                Objects.equals(temperatuur, metingId.temperatuur);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(metingId, temperatuur);
+        return Objects.hash(metingID, temperatuur);
     }
 }

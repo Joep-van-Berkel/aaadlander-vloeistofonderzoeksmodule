@@ -1,6 +1,6 @@
 package org.example.java.service;
 
-import org.example.java.model.MetingTijdstempelModel;
+import org.example.java.model.MetingTijdstempel;
 import org.example.java.repository.MetingTijdstempelRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ public class MetingTijdstempelService {
         this.metingTijdstempelRepository = metingTijdstempelRepository;
     }
 
-    public List<MetingTijdstempelModel> getAllMetingTijdstempels() {
+    public List<MetingTijdstempel> getAllMetingTijdstempels() {
         return metingTijdstempelRepository.findAll();
     }
 
-    public MetingTijdstempelModel saveMetingTijdstempel(MetingTijdstempelModel metingTijdstempelModel) {
-        return metingTijdstempelRepository.save(metingTijdstempelModel);
+    public MetingTijdstempel saveMetingTijdstempel(MetingTijdstempel metingTijdstempel) {
+        return metingTijdstempelRepository.save(metingTijdstempel);
     }
 }

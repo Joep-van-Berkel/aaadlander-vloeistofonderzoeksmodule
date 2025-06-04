@@ -1,6 +1,6 @@
 package org.example.java.controller;
 
-import org.example.java.model.MetingModel;
+import org.example.java.model.Meting;
 import org.example.java.service.MetingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +17,12 @@ public class MetingController {
     }
 
     @GetMapping
-    public List<MetingModel> getAllMetingen() {
+    public List<Meting> getAllMetingen() {
         return metingService.getAllMetingen();
     }
 
     @PostMapping
-    public MetingModel createMeting(@RequestBody MetingModel metingModel) {
-        return metingService.saveMeting(metingModel);
+    public Meting createMeting(@RequestBody Meting meting) {
+        return metingService.saveMeting(meting);
     }
 }
