@@ -4,6 +4,7 @@ import org.example.java.model.MetingTijdstempel;
 import org.example.java.repository.MetingTijdstempelRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -15,11 +16,13 @@ public class MetingTijdstempelService {
         this.metingTijdstempelRepository = metingTijdstempelRepository;
     }
 
-    public List<MetingTijdstempel> getAllMetingTijdstempels() {
-        return metingTijdstempelRepository.findAll();
+    public MetingTijdstempel createMetingTijdstempel() {
+        MetingTijdstempel metingTijdstempel = new MetingTijdstempel();
+        metingTijdstempel.setMetingTijdstempel(LocalDateTime.now());
+        return metingTijdstempelRepository.save(metingTijdstempel);
     }
 
-    public MetingTijdstempel saveMetingTijdstempel(MetingTijdstempel metingTijdstempel) {
-        return metingTijdstempelRepository.save(metingTijdstempel);
+    public List<MetingTijdstempel> getAllMetingTijdstempels() {
+        return metingTijdstempelRepository.findAll();
     }
 }

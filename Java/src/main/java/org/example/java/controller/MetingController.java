@@ -16,13 +16,21 @@ public class MetingController {
         this.metingService = metingService;
     }
 
-    @GetMapping
-    public List<Meting> getAllMetingen() {
-        return metingService.getAllMetingen();
+    @GetMapping("/{metingID}")
+    public List<Meting> getMetingenByMetingID(@PathVariable Long metingID) {
+        return metingService.getMetingenByMetingID(metingID);
     }
 
-    @PostMapping
-    public Meting createMeting(@RequestBody Meting meting) {
-        return metingService.saveMeting(meting);
+    @PostMapping("/bulk")
+    public List<Meting> createBulkMetingen(@RequestParam Long metingID, @RequestBody List<Double> temperaturen) {
+        List<Meting> metingen = temperaturen.stream()
+                .map(temp -> {
+                    Meting meting = new Meting();
+                    meting.setMetingID(metingID);
+                    meting.setTemperatuur(temp);
+                    return meting;
+                })
+                .toList();
+        return metingService.saveAllMetingen(metingen);
     }
 }

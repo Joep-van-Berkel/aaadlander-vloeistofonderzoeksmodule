@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class MetingTijdstempel {
 
@@ -12,7 +14,7 @@ public class MetingTijdstempel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long metingID;
 
-    private String metingTijdstempel;
+    private LocalDateTime metingTijdstempel;
 
     // Getters and Setters
     public Long getMetingID() {
@@ -23,11 +25,11 @@ public class MetingTijdstempel {
         this.metingID = metingID;
     }
 
-    public String getMetingTijdstempel() {
+    public LocalDateTime getMetingTijdstempel() {
         return metingTijdstempel;
     }
 
-    public void setMetingTijdstempel(String metingTijdstempel) {
+    public void setMetingTijdstempel(LocalDateTime metingTijdstempel) {
         this.metingTijdstempel = metingTijdstempel;
     }
 }

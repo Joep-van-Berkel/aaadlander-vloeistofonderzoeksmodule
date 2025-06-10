@@ -1,5 +1,6 @@
 let myChart;
 let measurementCount = 0;
+const measurements = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
@@ -7,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Testdata grafiek:
 
-    // for (let i = 0; i < 21; i++) {
-    // addMeasurementToChart((Math.random() * 20).toFixed(2));
-    // }
+    for (let i = 0; i < 20; i++) {
+    addMeasurementToChart((Math.random() * 20).toFixed(2));
+    }
 });
 
 function initializeChart() {
@@ -88,7 +89,13 @@ function addMeasurementToChart(temperature) {
     myChart.data.datasets[0].data.push(temperature);
     myChart.update();
 
+    measurements.push(temperature);
+
     measurementCount++;
     const loadPercentage = Math.floor(((measurementCount - 1) / 20) * 100);
     printLoadingBar(loadPercentage);
+}
+
+function getAllMeasurements() {
+    return measurements;
 }

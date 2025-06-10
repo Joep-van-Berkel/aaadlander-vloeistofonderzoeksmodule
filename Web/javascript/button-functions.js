@@ -56,19 +56,6 @@ function clickClearChart(){
     clearChartContents()
 }
 
-
-//DB buttons
-function clickSaveMeasurements() {
-    clearConsole()
-    printToConsole('Saved results to database.');
-}
-
-function clickLoadResults() {
-    clearConsole()
-    printToConsole('Results loaded into the chart.');
-}
-
-
 function disableAllButtonsForDuration(duration) {
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.disabled = true);

@@ -11,15 +11,15 @@ public class MetingService {
 
     private final MetingRepository metingRepository;
 
-    public MetingService(MetingRepository metingRepository){
+    public MetingService(MetingRepository metingRepository) {
         this.metingRepository = metingRepository;
     }
 
-    public List<Meting> getAllMetingen(){
-        return metingRepository.findAll();
+    public List<Meting> saveAllMetingen(List<Meting> metingen) {
+        return metingRepository.saveAll(metingen);
     }
 
-    public Meting saveMeting(Meting meting){
-        return metingRepository.save(meting);
+    public List<Meting> getMetingenByMetingID(Long metingID) {
+        return metingRepository.findByMetingID(metingID);
     }
 }
