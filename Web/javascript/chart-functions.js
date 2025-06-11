@@ -48,7 +48,7 @@ function initializeChart() {
                         color: 'white'
                     },
                     ticks: {
-                        color: 'white' // Set X-axis values font color to white
+                        color: 'white'
                     }
                 },
                 y: {
@@ -58,7 +58,7 @@ function initializeChart() {
                         color: 'white'
                     },
                     ticks: {
-                        color: 'white' // Set Y-axis values font color to white
+                        color: 'white'
                     },
                     beginAtZero: false,
                     Min: 0,
