@@ -1,3 +1,5 @@
+let selectedMetingID = null;
+
 document.addEventListener('DOMContentLoaded', () => {
 
     loadMetingTimestamps();
@@ -30,20 +32,42 @@ async function clickSaveMeasurements() {
         if (!metingenResponse.ok) {
             throw new Error(`Failed to save metingen: ${metingenResponse.status}`);
         }
-
-        console.log('Measurements saved successfully');
     } catch (error) {
         console.error('Error:', error);
     }
+    loadMetingTimestamps();
 }
 
-function clickLoadMeasurements() {
+async function clickLoadMeasurements() {
+    if (selectedMetingID) {
+        try {
+            const response = await fetch(`http://localhost:8080/metingen/${selectedMetingID}`);
 
+            if (!response.ok) {
+                throw new Error(`Failed to load metingen: ${response.status}`);
+            }
+
+            const metingen = await response.json();
+
+            clearChartContents();
+
+            metingen.forEach((measurement) => {
+                if (measurement.temperatuur !== undefined) {
+                    addMeasurementToChart(measurement.temperatuur);
+                } else {
+                    console.error('Temperature property is missing in:', measurement);
+                }
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    } else {
+        console.log('No row selected.');
+    }
 }
 
 async function loadMetingTimestamps() {
     try {
-        // Fetch all MetingTijdstempels from the backend
         const response = await fetch('http://localhost:8080/meting-tijdstempels');
 
         if (!response.ok) {
@@ -52,26 +76,50 @@ async function loadMetingTimestamps() {
 
         const metingTijdstempels = await response.json();
 
-        // Get the database div to display the list
         const databaseDiv = document.querySelector('.database');
-        databaseDiv.innerHTML = ''; // Clear the placeholder content
+        databaseDiv.innerHTML = '';
 
-        // Create a list to display the MetingTijdstempels
-        const list = document.createElement('ul');
-        list.style.listStyleType = 'none';
-        list.style.padding = '0';
+        const table = document.createElement('table');
+        table.classList.add('database-table');
+
+        const headerRow = document.createElement('tr');
+        ['MetingID', 'Date', 'Time'].forEach((headerText) => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            th.classList.add('table-header');
+            headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
 
         metingTijdstempels.forEach((tijdstempel) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `MetingID: ${tijdstempel.metingID}, Timestamp: ${tijdstempel.metingTijdstempel}`;
-            listItem.style.margin = '10px 0';
-            listItem.style.color = 'white';
-            listItem.style.fontFamily = 'system-ui';
-            listItem.style.fontSize = '18px';
-            list.appendChild(listItem);
+            const date = new Date(tijdstempel.metingTijdstempel);
+            const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
+            const formattedTime = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+            const row = document.createElement('tr');
+            row.classList.add('clickable-row');
+            row.addEventListener('click', () => {
+                // Remove 'selected' class from all rows
+                document.querySelectorAll('.clickable-row').forEach((r) => r.classList.remove('selected'));
+
+                // Add 'selected' class to the clicked row
+                row.classList.add('selected');
+
+                // Store the selected MetingID
+                selectedMetingID = tijdstempel.metingID;
+            });
+
+            [tijdstempel.metingID, formattedDate, formattedTime].forEach((cellText) => {
+                const td = document.createElement('td');
+                td.textContent = cellText;
+                td.classList.add('table-cell');
+                row.appendChild(td);
+            });
+
+            table.appendChild(row);
         });
 
-        databaseDiv.appendChild(list);
+        databaseDiv.appendChild(table);
     } catch (error) {
         console.error('Error:', error);
     }

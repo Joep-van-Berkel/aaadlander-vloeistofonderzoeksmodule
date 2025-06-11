@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearChartContents();
 
     // Testdata grafiek:
-
     for (let i = 0; i < 20; i++) {
     addMeasurementToChart((Math.random() * 20).toFixed(2));
     }
@@ -69,19 +68,18 @@ function initializeChart() {
     });
 }
 
-
 function clearChartContents() {
     if (myChart) {
         myChart.data.labels = [];
         myChart.data.datasets[0].data = [];
         myChart.update();
     }
+    measurementCount = 0;
 }
 
 function addMeasurementToChart(temperature) {
-    if (measurementCount > 20) {
 
-        enableAllButtons()
+    if (measurementCount >= 20) {
         return;
     }
 

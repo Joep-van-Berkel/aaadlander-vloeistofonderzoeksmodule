@@ -23,6 +23,6 @@ public class MetingTijdstempelService {
     }
 
     public List<MetingTijdstempel> getAllMetingTijdstempels() {
-        return metingTijdstempelRepository.findAll();
+        return metingTijdstempelRepository.findAllByOrderByMetingIDDesc();
     }
 }

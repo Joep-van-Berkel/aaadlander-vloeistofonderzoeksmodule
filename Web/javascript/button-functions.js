@@ -11,13 +11,14 @@ function clickFoldModule() {
 }
 
 function clickPumpLiquid() {
-    clearConsole()
+    clearConsole();
     printToConsole('Pumping liquid into the tank on the module...');
     sendCommandToNodeRED('digital_output_2=255');
 }
 
 function clickStartMeasurement() {
-    clearConsole()
+    clearConsole();
+    clearChartContents();
     printToConsole('Retrieving temperature measurements from module...');
 
     disableAllButtonsForDuration(20000)
