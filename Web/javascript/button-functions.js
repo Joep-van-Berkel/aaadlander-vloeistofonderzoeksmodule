@@ -89,13 +89,13 @@ function clickClearChart(){
     location.reload();
 }
 
-function disableAllButtonsForDuration(duration) {
+function disableAllButtonsForDuration(durationInSeconds) {
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.disabled = true);
 
     setTimeout(() => {
         buttons.forEach(button => button.disabled = false);
-    }, duration);
+    }, durationInSeconds * 1000);
 }
 
 //NodeRED
