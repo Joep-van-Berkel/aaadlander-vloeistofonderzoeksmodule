@@ -1,37 +1,63 @@
 function clickUnfoldModule() {
-    clearConsole()
-    printToConsole('Unfolding mechanical arm outside the module...');
+    const DURATION = 4;
+    const STARTMESSAGE = "Unfolding the mechanical arm outside the module";
+    const COMPLETIONMESSAGE = "Done unfolding the mechanical arm";
+
     sendCommandToNodeRED('digital_output_3=255');
+
+    disableAllButtonsForDuration(DURATION);
+    clearConsole();
+    printToConsole(STARTMESSAGE);
+    printLoadingBar(DURATION, COMPLETIONMESSAGE);
 }
 
 function clickFoldModule() {
-    clearConsole()
-    printToConsole('Folding in mechanical arm.');
+    const DURATION = 4;
+    const STARTMESSAGE = "Folding in the mechanical arm";
+    const COMPLETIONMESSAGE = "Done folding the mechanical arm";
+
     sendCommandToNodeRED('digital_output_3=0');
+
+    disableAllButtonsForDuration(DURATION);
+    clearConsole();
+    printToConsole(STARTMESSAGE);
+    printLoadingBar(DURATION, COMPLETIONMESSAGE);
 }
 
 function clickPumpLiquid() {
-    clearConsole();
-    printToConsole('Pumping liquid into the tank on the module...');
+    const DURATION = 10;
+    const STARTMESSAGE = "Pumping liquid into the tank on the module";
+    const COMPLETIONMESSAGE = "Done pumping the liquid into the tank";
+
     sendCommandToNodeRED('digital_output_2=255');
+
+    disableAllButtonsForDuration(DURATION);
+    clearConsole();
+    printToConsole(STARTMESSAGE);
+    printLoadingBar(DURATION, COMPLETIONMESSAGE);
 }
 
 function clickStartMeasurement() {
-    clearConsole();
-    clearChartContents();
-    printToConsole('Retrieving temperature measurements from module...');
+    const DURATION = 20;
+    const STARTMESSAGE = "Retrieving temperature measurements from module";
+    const COMPLETIONMESSAGE = "Successfully retrieved all temperature measurements";
 
-    disableAllButtonsForDuration(20000)
+    disableAllButtonsForDuration(DURATION);
+    clearConsole();
+    printToConsole(STARTMESSAGE);
+    printLoadingBar(DURATION, COMPLETIONMESSAGE);
+
+    clearChartContents();
 
     const socket = new WebSocket('ws://145.49.127.248:1880/ws/groep8');
 
     socket.addEventListener('open', () => {
-        console.log('WebSocket connection established');
+        console.info('WebSocket connection established');
     });
 
     socket.addEventListener('message', (event) => {
         try {
-            console.log('Received data:', event.data);
+            console.info('Received data:', event.data);
             const data = JSON.parse(event.data);
 
             if (data.temperature_2) {
@@ -46,14 +72,19 @@ function clickStartMeasurement() {
 }
 
 function clickUnloadLiquid(){
+    const DURATION = 12;
+    const STARTMESSAGE = "Unloading the liquid tank on the module"
+    const COMPLETIONMESSAGE = "Done unloading the liquid from the tank"
+
+    disableAllButtonsForDuration(DURATION, COMPLETIONMESSAGE);
     clearConsole()
-    printToConsole('Unloading liquid tank on the module...');
+    printToConsole(STARTMESSAGE);
     sendCommandToNodeRED('digital_output_2=0');
 }
 
 function clickClearChart(){
-    clearConsole()
-    printToConsole('Measurements in the chart have been cleared.');
+    // clearConsole()
+    // printToConsole('Measurements in the chart have been cleared.');
     // clearChartContents()
     location.reload();
 }
@@ -82,7 +113,7 @@ function sendCommandToNodeRED(command) {
             return response.json();
         })
         .then(data => {
-            console.log('Command sent successfully:', data);
+            console.info('Command sent successfully:', data);
         })
         .catch(error => {
             console.error('Error sending command to Node-RED:', error);

@@ -8,7 +8,7 @@ function printToConsole(messages) {
         messageElement.textContent = `${timestamp} > ${message}`;
         messageElement.style.color = 'white';
         messageElement.style.margin = '5px 0';
-        messageElement.style.fontFamily = 'Consolas';
+        messageElement.style.fontFamily = 'Consolas, monospace';
         messageElement.style.border = 'none';
         consoleField.appendChild(messageElement);
     });
@@ -23,9 +23,7 @@ function clearConsole() {
     }
 }
 
-let lastDisplayedPercentage = 0;
-
-function printLoadingBar(percentage) {
+function printLoadingBar(durationInSeconds, completionMessage) {
     const consoleField = document.querySelector('.console-field');
     if (!consoleField) return;
 
@@ -34,17 +32,30 @@ function printLoadingBar(percentage) {
         loadingBar = document.createElement('div');
         loadingBar.className = 'loading-bar';
         loadingBar.style.color = 'lightgreen';
-        loadingBar.style.margin = '5px 0';
+        loadingBar.style.margin = '10px 0';
         loadingBar.style.fontFamily = 'Consolas';
         loadingBar.style.border = 'none';
         consoleField.appendChild(loadingBar);
     }
 
-    const blocks = Math.floor(percentage / 5); // Number of ▰ blocks
-    const dashes = 20 - blocks; // Remaining ═ dashes
-    loadingBar.textContent = `${percentage}%  ` + `▰`.repeat(blocks) + ` `.repeat(dashes);
-    lastDisplayedPercentage = percentage;
+    const totalBlocks = 50;
+    const interval = 100;
+    const totalTime = durationInSeconds * 1000;
+    let elapsedTime = 0;
+
+    const intervalId = setInterval(() => {
+        elapsedTime += interval;
+        const percentage = Math.min((elapsedTime / totalTime) * 100, 100);
+        const blocks = Math.floor((percentage / 100) * totalBlocks);
+        const dashes = totalBlocks - blocks;
+
+        loadingBar.textContent = `${Math.floor(percentage)}%  ` + `▰`.repeat(blocks) + ` `.repeat(dashes);
+
+        if (elapsedTime >= totalTime) {
+            clearInterval(intervalId);
+            printToConsole(completionMessage);
+        }
+    }, interval);
 }
 
-printLoadingBar(0);
 
