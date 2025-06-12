@@ -209,7 +209,6 @@ div {
 
 .clickable-row {
     cursor: pointer;
-    border-radius: 20px;
 }
 
 .clickable-row:hover {

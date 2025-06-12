@@ -16,6 +16,13 @@ function printToConsole(messages) {
     consoleField.scrollTop = consoleField.scrollHeight;
 }
 
+function clearConsole() {
+    const consoleField = document.querySelector('.console-field');
+    if (consoleField){
+        consoleField.innerText = '';
+    }
+}
+
 let lastDisplayedPercentage = 0;
 
 function printLoadingBar(percentage) {
@@ -41,9 +48,3 @@ function printLoadingBar(percentage) {
 
 printLoadingBar(0);
 
-function clearConsole() {
-    const consoleField = document.querySelector('.console-field');
-    if (consoleField){
-        consoleField.innerText = '';
-    }
-}

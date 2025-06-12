@@ -1,6 +1,6 @@
 let myChart;
 let measurementCount = 0;
-const measurements = [];
+let measurements = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
@@ -77,9 +77,21 @@ function clearChartContents() {
     measurementCount = 0;
 }
 
-function addMeasurementToChart(temperature) {
+function clearChartContentsForLoading() {
+    if (myChart) {
+        myChart.data.labels = [];
+        myChart.data.datasets[0].data = [];
+        myChart.update();
+    }
+}
+
+function addMeasurementToChart(temperature, socket) {
 
     if (measurementCount >= 20) {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.close();
+            console.log('WebSocket connection closed as measurement limit reached.');
+        }
         return;
     }
 
@@ -87,11 +99,21 @@ function addMeasurementToChart(temperature) {
     myChart.data.datasets[0].data.push(temperature);
     myChart.update();
 
+
     measurements.push(temperature);
 
     measurementCount++;
     const loadPercentage = Math.floor(((measurementCount - 1) / 20) * 100);
     printLoadingBar(loadPercentage);
+}
+
+function addMeasurementToChartFromLoading(temperature) {
+
+    myChart.data.labels.push(measurementCount);
+    myChart.data.datasets[0].data.push(temperature);
+    myChart.update();
+
+    measurements.push(temperature);
 }
 
 function getAllMeasurements() {

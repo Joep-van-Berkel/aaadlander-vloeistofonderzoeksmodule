@@ -18,7 +18,7 @@ public class MetingTijdstempelService {
 
     public MetingTijdstempel createMetingTijdstempel() {
         MetingTijdstempel metingTijdstempel = new MetingTijdstempel();
-        metingTijdstempel.setMetingTijdstempel(LocalDateTime.now());
+        metingTijdstempel.setTijdstempel(String.valueOf(LocalDateTime.now()));
         return metingTijdstempelRepository.save(metingTijdstempel);
     }
 

@@ -1,26 +1,29 @@
 package org.example.java.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
-@IdClass(MetingId.class)
 public class Meting {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long temperatuurID;
+
+    @Column(name = "metingID", nullable = false)
     private Long metingID;
 
-    @Id
+    @Column(nullable = false)
     private Double temperatuur;
 
-    @ManyToOne
-    @JoinColumn(name = "metingID", insertable = false, updatable = false)
-    private MetingTijdstempel metingTijdstempel;
-
     // Getters and Setters
+    public Long getMeasurementID() {
+        return temperatuurID;
+    }
+
+    public void setMeasurementID(Long measurementID) {
+        this.temperatuurID = measurementID;
+    }
+
     public Long getMetingID() {
         return metingID;
     }
@@ -35,13 +38,5 @@ public class Meting {
 
     public void setTemperatuur(Double temperatuur) {
         this.temperatuur = temperatuur;
-    }
-
-    public MetingTijdstempel getMetingTijdstempel() {
-        return metingTijdstempel;
-    }
-
-    public void setMetingTijdstempel(MetingTijdstempel metingTijdstempel) {
-        this.metingTijdstempel = metingTijdstempel;
     }
 }

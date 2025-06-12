@@ -18,7 +18,7 @@ void pumpStop(){
 void pumpIntoModule() {
   analogWrite(motorPin2, 0);
   analogWrite(motorPin1, speed);
-  delay(5000);
+  delay(10000);
 
   pumpStop();
 }

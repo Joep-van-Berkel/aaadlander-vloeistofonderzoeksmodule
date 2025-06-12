@@ -3,6 +3,13 @@ let selectedMetingID = null;
 document.addEventListener('DOMContentLoaded', () => {
 
     loadMetingTimestamps();
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.clickable-row')) {
+            document.querySelectorAll('.clickable-row').forEach((row) => row.classList.remove('selected'));
+            selectedMetingID = null;
+        }
+    });
 });
 
 async function clickSaveMeasurements() {
@@ -33,9 +40,9 @@ async function clickSaveMeasurements() {
             throw new Error(`Failed to save metingen: ${metingenResponse.status}`);
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error while saving measurements:', error);
     }
-    loadMetingTimestamps();
+    loadMetingTimestamps()
 }
 
 async function clickLoadMeasurements() {
@@ -49,11 +56,11 @@ async function clickLoadMeasurements() {
 
             const metingen = await response.json();
 
-            clearChartContents();
+            clearChartContentsForLoading();
 
             metingen.forEach((measurement) => {
                 if (measurement.temperatuur !== undefined) {
-                    addMeasurementToChart(measurement.temperatuur);
+                    addMeasurementToChartFromLoading(measurement.temperatuur);
                 } else {
                     console.error('Temperature property is missing in:', measurement);
                 }
@@ -92,7 +99,7 @@ async function loadMetingTimestamps() {
         table.appendChild(headerRow);
 
         metingTijdstempels.forEach((tijdstempel) => {
-            const date = new Date(tijdstempel.metingTijdstempel);
+            const date = new Date(tijdstempel.tijdstempel);
             const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
             const formattedTime = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 

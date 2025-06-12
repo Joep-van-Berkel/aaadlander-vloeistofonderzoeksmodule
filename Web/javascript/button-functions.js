@@ -35,7 +35,7 @@ function clickStartMeasurement() {
             const data = JSON.parse(event.data);
 
             if (data.temperature_2) {
-                addMeasurementToChart(data.temperature_2);
+                addMeasurementToChart(data.temperature_2, socket);
             } else {
                 console.warn('Invalid data format:', data);
             }
@@ -54,7 +54,8 @@ function clickUnloadLiquid(){
 function clickClearChart(){
     clearConsole()
     printToConsole('Measurements in the chart have been cleared.');
-    clearChartContents()
+    // clearChartContents()
+    location.reload();
 }
 
 function disableAllButtonsForDuration(duration) {
