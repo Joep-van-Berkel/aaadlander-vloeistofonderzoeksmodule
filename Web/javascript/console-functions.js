@@ -31,7 +31,7 @@ function printLoadingBar(durationInSeconds, completionMessage) {
     if (!loadingBar) {
         loadingBar = document.createElement('div');
         loadingBar.className = 'loading-bar';
-        loadingBar.style.color = 'lightgreen';
+        loadingBar.style.color = 'rgb(196,0,42)';
         loadingBar.style.margin = '10px 0';
         loadingBar.style.fontFamily = 'Consolas';
         loadingBar.style.border = 'none';

@@ -1,3 +1,5 @@
+let socket;
+
 function clickUnfoldModule() {
     const DURATION = 4;
     const STARTMESSAGE = "Unfolding the mechanical arm outside the module";
@@ -12,9 +14,9 @@ function clickUnfoldModule() {
 }
 
 function clickFoldModule() {
-    const DURATION = 4;
-    const STARTMESSAGE = "Folding in the mechanical arm";
-    const COMPLETIONMESSAGE = "Done folding the mechanical arm";
+    const DURATION = 3.5;
+    const STARTMESSAGE = "Retracting the mechanical arm";
+    const COMPLETIONMESSAGE = "Done retracting the mechanical arm";
 
     sendCommandToNodeRED('digital_output_3=0');
 
@@ -42,6 +44,12 @@ function clickStartMeasurement() {
     const STARTMESSAGE = "Retrieving temperature measurements from module";
     const COMPLETIONMESSAGE = "Successfully retrieved all temperature measurements";
 
+    // Close any existing WebSocket connection
+    if (socket && socket.readyState !== WebSocket.CLOSED) {
+        socket.close();
+        console.info('Previous WebSocket connection closed.');
+    }
+
     disableAllButtonsForDuration(DURATION);
     clearConsole();
     printToConsole(STARTMESSAGE);
@@ -49,7 +57,7 @@ function clickStartMeasurement() {
 
     clearChartContents();
 
-    const socket = new WebSocket('ws://145.49.127.248:1880/ws/groep8');
+    socket = new WebSocket('ws://145.49.127.248:1880/ws/groep8');
 
     socket.addEventListener('open', () => {
         console.info('WebSocket connection established');
@@ -61,13 +69,22 @@ function clickStartMeasurement() {
             const data = JSON.parse(event.data);
 
             if (data.temperature_2) {
-                addMeasurementToChart(data.temperature_2, socket);
+                addMeasurementToChart(data.temperature_2);
             } else {
                 console.warn('Invalid data format:', data);
+            }
+
+            if (measurements.length >= 20) { // Use measurements.length
+                socket.close();
+                console.info('WebSocket connection closed as measurement limit reached.');
             }
         } catch (error) {
             console.error('Error processing WebSocket message:', error);
         }
+    });
+
+    socket.addEventListener('close', () => {
+        console.info('WebSocket connection closed');
     });
 }
 
@@ -83,10 +100,11 @@ function clickUnloadLiquid(){
 }
 
 function clickClearChart(){
-    // clearConsole()
-    // printToConsole('Measurements in the chart have been cleared.');
-    // clearChartContents()
-    location.reload();
+    clearChartContents()
+    clearConsole()
+    printToConsole('Measurements in the chart have been cleared.');
+
+    // location.reload();
 }
 
 function disableAllButtonsForDuration(durationInSeconds) {

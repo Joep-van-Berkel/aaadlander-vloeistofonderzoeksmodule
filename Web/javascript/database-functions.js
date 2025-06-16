@@ -56,11 +56,11 @@ async function clickLoadMeasurements() {
 
             const metingen = await response.json();
 
-            clearChartContentsForLoading();
+            clearChartContents();
 
             metingen.forEach((measurement) => {
                 if (measurement.temperatuur !== undefined) {
-                    addMeasurementToChartFromLoading(measurement.temperatuur);
+                    addMeasurementToChart(measurement.temperatuur);
                 } else {
                     console.error('Temperature property is missing in:', measurement);
                 }

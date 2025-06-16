@@ -1,15 +1,14 @@
 let myChart;
-let measurementCount = 0;
 let measurements = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
     clearChartContents();
 
-    // Testdata grafiek:
-    for (let i = 0; i < 20; i++) {
-    addMeasurementToChart((Math.random() * 15).toFixed(2));
-    }
+    // Test data for the chart:
+    // for (let i = 0; i < 20; i++) {
+    //     addMeasurementToChart((Math.random() * 15).toFixed(2));
+    // }
 });
 
 function initializeChart() {
@@ -26,6 +25,7 @@ function initializeChart() {
             }]
         },
         options: {
+            maintainAspectRatio: false,
             layout: {
                 padding: {
                     top: 25,
@@ -43,11 +43,14 @@ function initializeChart() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Time (seconds)',
+                        text: 'Measurements',
                         color: 'white'
                     },
                     ticks: {
                         color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.04)'
                     }
                 },
                 y: {
@@ -58,6 +61,9 @@ function initializeChart() {
                     },
                     ticks: {
                         color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.04)'
                     },
                     beginAtZero: true,
                 }
@@ -72,39 +78,13 @@ function clearChartContents() {
         myChart.data.datasets[0].data = [];
         myChart.update();
     }
-    measurementCount = 0;
+    measurements = [];
 }
 
-function clearChartContentsForLoading() {
-    if (myChart) {
-        myChart.data.labels = [];
-        myChart.data.datasets[0].data = [];
-        myChart.update();
-    }
-}
+function addMeasurementToChart(temperature) {
+    if (measurements.length >= 20) return;
 
-function addMeasurementToChart(temperature, socket) {
-
-    if (measurementCount >= 20) {
-        if (socket && socket.readyState === WebSocket.OPEN) {
-            socket.close();
-            console.log('WebSocket connection closed as measurement limit reached.');
-        }
-        return;
-    }
-
-    myChart.data.labels.push(measurementCount);
-    myChart.data.datasets[0].data.push(temperature);
-    myChart.update();
-
-    measurements.push(temperature);
-
-    measurementCount++;
-}
-
-function addMeasurementToChartFromLoading(temperature) {
-
-    myChart.data.labels.push(measurementCount);
+    myChart.data.labels.push(measurements.length + 1);
     myChart.data.datasets[0].data.push(temperature);
     myChart.update();
 

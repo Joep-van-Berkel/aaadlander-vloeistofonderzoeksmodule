@@ -116,8 +116,9 @@ div {
 }
 
 .graph canvas {
-    width: 100% !important;
-    height: 100%;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .logo-container {
