@@ -44,7 +44,6 @@ function clickStartMeasurement() {
     const STARTMESSAGE = "Retrieving temperature measurements from module";
     const COMPLETIONMESSAGE = "Successfully retrieved all temperature measurements";
 
-    // Close any existing WebSocket connection
     if (socket && socket.readyState !== WebSocket.CLOSED) {
         socket.close();
         console.info('Previous WebSocket connection closed.');
@@ -74,7 +73,7 @@ function clickStartMeasurement() {
                 console.warn('Invalid data format:', data);
             }
 
-            if (measurements.length >= 20) { // Use measurements.length
+            if (measurements.length >= 20) {
                 socket.close();
                 console.info('WebSocket connection closed as measurement limit reached.');
             }

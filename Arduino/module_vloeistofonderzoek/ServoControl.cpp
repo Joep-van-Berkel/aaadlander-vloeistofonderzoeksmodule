@@ -19,15 +19,15 @@ void servoSetup() {
 
 void unfoldModule() {
     
-    // Servo1: van 0 naar 65 graden
+    // Servo2: van 0 naar 65 graden
     for (int pos = 180; pos >= 90; pos--) {
         servo2.write(pos);
         delay(15);
     }
     
 
-    // Servo1: van 0 naar 65 graden
-    for (int pos = 0; pos <= 85; pos++) {
+    // Servo1: van 0 naar 75 graden
+    for (int pos = 0; pos <= 75; pos++) {
         servo1.write(pos);
         delay(15);
     }
@@ -36,8 +36,8 @@ void unfoldModule() {
 
 void foldModule() {
 
-    // Servo1: van 65 terug naar 0 graden
-    for (int pos = 65; pos >= 0; pos--) {
+    // Servo1: van 75 terug naar 0 graden
+    for (int pos = 75; pos >= 0; pos--) {
         servo1.write(pos);
         delay(15);
     }

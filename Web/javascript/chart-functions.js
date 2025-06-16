@@ -67,7 +67,8 @@ function initializeChart() {
                     },
                     beginAtZero: true,
                 }
-            }
+            },
+            animation: false
         }
     });
 }
