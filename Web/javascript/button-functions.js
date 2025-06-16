@@ -27,7 +27,7 @@ function clickFoldModule() {
 }
 
 function clickPumpLiquid() {
-    const DURATION = 10;
+    const DURATION = 11;
     const STARTMESSAGE = "Pumping liquid into the tank on the module";
     const COMPLETIONMESSAGE = "Done pumping the liquid into the tank";
 
